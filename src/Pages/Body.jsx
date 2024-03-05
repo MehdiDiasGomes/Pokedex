@@ -29,7 +29,7 @@ export default function Body() {
 
       <div className="flex justify-center gap-5">
         {Array.from({ length: nbPage }, (_, i) => i + 1).map(page => {
-          return <button className="text-white border-2 border-white w-10 h-10 duration-300 hover:bg-white hover:text-black">{page}</button>
+          return <button onClick={() => setCurrent(page)} className="text-white border-2 border-white w-10 h-10 duration-300 hover:bg-white hover:text-black">{page}</button>
         })}
       </div>
     </div>
