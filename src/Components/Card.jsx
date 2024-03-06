@@ -1,49 +1,56 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useState, useEffect } from 'react'
-import Body from '../Pages/Body'
+import { createPortal } from 'react-dom'
+import { Children } from 'react'
 
-export default function Card() {
-  const [data, setData] = useState()
-  const [name, setName] = useState()
-  const [img, setImg] = useState()
-  const [number, setNumber] = useState(25)
+const Card = ({ name, url }) => {
+  const [pokemon, setPokemon] = useState()
+  const [isOpen, setIsOpen] = useState(false)
 
-  const URL = import.meta.env.VITE_URL_API + "pokemon/" + number;
-  console.log(URL)
+  const handleChangeIsOpen = () => {
+    setIsOpen(!isOpen)
+  }
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(url)
+      setPokemon(response.data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   useEffect(() => {
-    axios
-      .get(URL)
-      .then(response => {
-        setData(response.data)
-        setName(response.data.name)
-        setImg(response.data.sprites.front_default)
-      })
-      .catch(err => {
-        window.alert(err)
-      })
+    fetchData()
   }, [])
+
+  if (!pokemon) return null
 
   return (
     <>
-      <a
-        href="#"
-        className="flex items-center justify-center bg-white rounded-lg duration-300 shadow-shadowCard hover:scale-95">
-        <div className="w-52 h-52 flex flex-col p-3 items-center">
-          <img src={img} alt={name} />
+      {isOpen &&
+        createPortal(
+          <div className="p-10 bg-white absolute z-50">Modal</div>,
+          document.body
+        )}
+      <div
+        onClick={() => handleChangeIsOpen}
+        className="flex cursor-pointer items-center justify-center bg-white rounded-lg duration-300 shadow-shadowCard hover:scale-95">
+        <div className="w-52 h-52 flex flex-col gap-10 p-3 items-center justify-end">
+          <img
+            className="w-7/12"
+            src={`https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${String(
+              pokemon.id
+            ).padStart(3, '0')}.png`}
+            alt={name}
+          />
           <h2 className="text-2xl font-bold">
             {name && name.charAt(0).toUpperCase() + name.slice(1)}
           </h2>
-          <button
-            className="bg-white"
-            onClick={() => {
-              console.log(numberOfPokemon)
-            }}>
-            test
-          </button>
         </div>
-      </a>
+      </div>
     </>
   )
 }
+
+export default Card
