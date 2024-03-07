@@ -2,20 +2,13 @@ import React from 'react'
 import Card from '../Components/Card'
 import { useState } from 'react'
 import ListPokemon from '../Components/ListPokemon'
-import { data } from 'autoprefixer'
 
 export default function Body() {
-  const [cards, setCards] = useState(null)
+  let cards = []
 
-  const handleListPokemon = () => {
-    setCards(<ListPokemon />)
+  for (let i = 0; i < 300; i++) {
+    cards.push(<Card key={i} />)
   }
-
-  handleListPokemon()
-
-  if(!cards) return null
-
-  console.log(cards)
 
   //Pagination
 
@@ -30,7 +23,9 @@ export default function Body() {
 
   return (
     <div className="mb-24 flex flex-col gap-5">
-      <div className=""><ListPokemon /></div>
+      <div className="">
+        <ListPokemon />
+      </div>
 
       <div className="flex justify-center gap-5">
         {Array.from({ length: nbPage }, (_, i) => i + 1).map(page => {
