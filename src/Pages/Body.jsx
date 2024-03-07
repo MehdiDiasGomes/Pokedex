@@ -2,14 +2,20 @@ import React from 'react'
 import Card from '../Components/Card'
 import { useState } from 'react'
 import ListPokemon from '../Components/ListPokemon'
+import { data } from 'autoprefixer'
 
 export default function Body() {
+  const [cards, setCards] = useState(null)
 
-  let cards = []
-
-  for (let i = 0; i < 300; i++) {
-    cards.push(<Card key={i} />)
+  const handleListPokemon = () => {
+    setCards(<ListPokemon />)
   }
+
+  handleListPokemon()
+
+  if(!cards) return null
+
+  console.log(cards)
 
   //Pagination
 
@@ -24,9 +30,7 @@ export default function Body() {
 
   return (
     <div className="mb-24 flex flex-col gap-5">
-      <div className="">
-        <ListPokemon />
-      </div>
+      <div className="">{dataPerPage}</div>
 
       <div className="flex justify-center gap-5">
         {Array.from({ length: nbPage }, (_, i) => i + 1).map(page => {
@@ -34,9 +38,7 @@ export default function Body() {
             <button
               onClick={() => setCurrent(page)}
               className={`border-2 border-white w-10 h-10 duration-300 ${
-                current === page
-                  ? 'text-black bg-white'
-                  : 'text-white bg-transparent'
+                current === page ? 'text-black bg-white' : 'text-white bg-transparent'
               } hover:bg-white hover:text-black`}>
               {page}
             </button>

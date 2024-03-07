@@ -19,8 +19,6 @@ const ListPokemon = () => {
     fetchData()
   })
 
-  console.log(pokemons)
-
   if (!pokemons.results) return null
 
   return (
