@@ -23,7 +23,8 @@ const Card = ({ name, url }) => {
 
   return (
     <>
-      <div className="flex cursor-pointer items-center justify-center bg-white rounded-lg duration-300 shadow-shadowCard hover:scale-95">
+      <div className="relative flex cursor-pointer items-center justify-center bg-white rounded-lg duration-300 shadow-shadowCard hover:scale-95">
+        <div className="absolute rounded-ss-full opacity-10 w-full h-[60%] bottom-0 bg-slate-900"></div>
         <div className="w-52 h-52 flex flex-col gap-10 p-3 items-center justify-end">
           <img
             className="w-7/12"
