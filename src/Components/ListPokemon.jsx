@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const ListPokemon = () => {
   const [pokemons, setPokemons] = useState([])
-  const URL = import.meta.env.VITE_URL_API + 'pokemon?limit=100'
+  const URL = import.meta.env.VITE_URL_API + 'pokemon?limit=50'
 
   const fetchData = async () => {
     try {
