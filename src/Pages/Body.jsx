@@ -1,45 +1,40 @@
-import React from 'react'
-import Card from '../Components/Card'
-import { useState } from 'react'
-import ListPokemon from '../Components/ListPokemon'
+import React, { useState } from 'react';
+import Card from '../Components/Card';
+import ListPokemon from '../Components/ListPokemon';
 
 export default function Body() {
-  let cards = []
+  const itemsPerPage = 50;
+  const totalPokemon = 500;
+  const totalPages = Math.ceil(totalPokemon / itemsPerPage);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  for (let i = 0; i < 300; i++) {
-    cards.push(<Card key={i} />)
-  }
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
-  //Pagination
-
-  const items = 50
-  const [current, setCurrent] = useState(1)
-  const nbPage = Math.ceil(cards.length / items)
-
-  const startIndex = (current - 1) * items
-  const endIndex = startIndex + items
-
-  const dataPerPage = cards.slice(startIndex, endIndex)
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, totalPokemon);
 
   return (
     <div className="mb-24 flex flex-col gap-5">
       <div className="">
-        <ListPokemon />
+        <ListPokemon start={startIndex} end={endIndex} />
       </div>
 
       <div className="flex justify-center gap-5">
-        {Array.from({ length: nbPage }, (_, i) => i + 1).map(page => {
-          return (
-            <button
-              onClick={() => setCurrent(page)}
-              className={`border-2 border-white w-10 h-10 duration-300 ${
-                current === page ? 'text-black bg-white' : 'text-white bg-transparent'
-              } hover:bg-white hover:text-black`}>
-              {page}
-            </button>
-          )
-        })}
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+          <button
+            key={page}
+            onClick={() => handlePageChange(page)}
+            className={`border-2 rounded-lg border-white w-10 h-10 duration-300 ${
+              currentPage === page ? 'text-black bg-white' : 'text-white bg-transparent'
+            } hover:bg-white hover:text-black`}
+          >
+            {page}
+          </button>
+        ))}
       </div>
     </div>
-  )
+  );
 }

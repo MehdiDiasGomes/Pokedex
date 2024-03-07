@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react'
 import Card from './Card'
 import axios from 'axios'
 
-const ListPokemon = () => {
+const ListPokemon = ({ start, end }) => {
   const [pokemons, setPokemons] = useState([])
-  const URL = import.meta.env.VITE_URL_API + 'pokemon?limit=50'
+
+  const URL = import.meta.env.VITE_URL_API + `pokemon?limit=${end - start}&offset=${start}`
 
   const fetchData = async () => {
     try {
       const response = await axios.get(URL)
-      setPokemons(response.data)
+      setPokemons(response.data.results)
     } catch (error) {
       console.error(error)
     }
@@ -17,14 +18,14 @@ const ListPokemon = () => {
 
   useEffect(() => {
     fetchData()
-  })
+  }, [start, end])
 
-  if (!pokemons.results) return null
+  if (!pokemons.length) return null
 
   return (
     <div className="w-full h-full flex flex-col gap-5 justify-center items-center">
       <ul className="flex justify-center items-center gap-5 p-10 bg-bodyColor w-[65%] flex-wrap rounded-lg">
-        {pokemons.results.map((pokemon, index) => (
+        {pokemons.map((pokemon, index) => (
           <li key={index}>
             <Card name={pokemon.name} url={pokemon.url} />
           </li>
