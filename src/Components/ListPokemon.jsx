@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react'
 import Card from './Card'
 import axios from 'axios'
 
-const ListPokemon = ({ start, end }) => {
+const ListPokemon = ({ start, end, searchTerm }) => {
   const [pokemons, setPokemons] = useState([])
-
   const URL = import.meta.env.VITE_URL_API + `pokemon?limit=${end - start}&offset=${start}`
 
   const fetchData = async () => {
@@ -20,12 +19,14 @@ const ListPokemon = ({ start, end }) => {
     fetchData()
   }, [start, end])
 
-  if (!pokemons.length) return null
+  const filteredPokemons = pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(searchTerm.toLowerCase()))
+
+  if (filteredPokemons.length === 0) return <p className="absolute bottom-10 right-10 text-3xl text-white">Aucun résultat trouvé.</p>
 
   return (
     <div className="w-full h-full flex flex-col gap-5 justify-center items-center">
       <ul className="flex justify-center items-center gap-5 p-10 bg-bodyColor w-[65%] flex-wrap rounded-lg">
-        {pokemons.map((pokemon, index) => (
+        {filteredPokemons.map((pokemon, index) => (
           <li key={index}>
             <Card name={pokemon.name} url={pokemon.url} />
           </li>
