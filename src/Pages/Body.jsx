@@ -30,7 +30,7 @@ export default function Body() {
 
   return (
     <div className="mb-24 flex flex-col gap-5">
-      <div className="">{dataPerPage}</div>
+      <div className=""><ListPokemon /></div>
 
       <div className="flex justify-center gap-5">
         {Array.from({ length: nbPage }, (_, i) => i + 1).map(page => {
