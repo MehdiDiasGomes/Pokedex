@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Pagination = ({currentPage, totalPages, handlePageChange}) => {
+const Pagination = ({ currentPage, totalPages, handlePageChange }) => {
   return (
     <div>
-      <div className="flex justify-center gap-5">
+      <div className="flex justify-center gap-5 flex-wrap">
         {Array.from({ length: totalPages }, (_, i) => i + 1).map(pageNumber => (
           <button
             key={pageNumber}
