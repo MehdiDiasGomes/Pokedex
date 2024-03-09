@@ -21,7 +21,7 @@ const ListPokemon = ({ start, end, searchTerm }) => {
     fetchData()
   }, [start, end])
 
-  const filteredPokemons = pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(searchTerm.toLowerCase()))
+  // const filteredPokemons = pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(searchTerm.toLowerCase()))
 
   if (pokemons && filteredPokemons.length === 0) return <p className="absolute bottom-10 right-10 text-3xl text-white">Aucun résultat trouvé.</p>
 
