@@ -6,18 +6,19 @@ import SearchBar from '../Components/SearchBar'
 
 export default function Body() {
   const itemsPerPage = 50
-  const totalPokemon = 472
+  const totalPokemon = 470
   const totalPages = Math.ceil(totalPokemon / itemsPerPage)
   const [currentPage, setCurrentPage] = useState(1)
+
   const [searchTerm, setSearchTerm] = useState('')
 
-  const handlePageChange = page => {
+  const handlePageChange = (page) => {
     setCurrentPage(page)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  const handleSearch = term => {
-    setSearchTerm(term)
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value)
     setCurrentPage(1)
   }
 
