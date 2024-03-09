@@ -23,7 +23,7 @@ const ListPokemon = ({ start, end, searchTerm }) => {
 
   // const filteredPokemons = pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(searchTerm.toLowerCase()))
 
-  if (pokemons && filteredPokemons.length === 0) return <p className="absolute bottom-10 right-10 text-3xl text-white">Aucun résultat trouvé.</p>
+  if (pokemons.length === 0) return <p className="absolute bottom-10 right-10 text-3xl text-white">Aucun résultat trouvé.</p>
 
   return (
     <div className="w-full h-full flex flex-col gap-5 justify-center items-center">
