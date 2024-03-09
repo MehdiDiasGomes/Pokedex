@@ -10,11 +10,11 @@ const ListPokemon = ({ start, end, searchTerm }) => {
   const fetchData = async () => {
     try {
       const response = await axios.get(URL)
-      if (response.data) {
+      if (response.data.results) {
         if (searchTerm)
           return setPokemons(response.data.results.filter(pokemon => pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())))
 
-        setPokemons(response.data.results)
+        return setPokemons(response.data.results)
       }
     } catch (error) {
       console.error(error)
