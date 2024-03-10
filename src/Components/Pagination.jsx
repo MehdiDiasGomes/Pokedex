@@ -1,6 +1,16 @@
 import React from 'react'
+import usePokemon from '../hooks/usePokemon'
 
-const Pagination = ({ currentPage, totalPages, handlePageChange }) => {
+const Pagination = () => {
+  const { totalPages, setCurrentPage, currentPage, search } = usePokemon()
+
+  const handlePageChange = page => {
+    setCurrentPage(page)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  if (search) return null
+
   return (
     <div>
       <div className="flex justify-center gap-5 flex-wrap">

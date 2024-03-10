@@ -1,10 +1,14 @@
-const SearchBar = ({ onSearch }) => {
+import usePokemon from "../hooks/usePokemon";
+
+const SearchBar = () => {
+
+  const {search, setSearch} = usePokemon()
 
   return (
     <div className="flex items-center justify-center">
       <input
         type="text"
-        onChange={(e) => onSearch(e)}
+        onChange={(e) => setSearch(e.target.value)}
         placeholder="Rechercher par nom..."
         className="border-2 border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
       />
