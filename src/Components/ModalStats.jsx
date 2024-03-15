@@ -15,7 +15,7 @@ export default function ModalStats({ closeModal, imageUrl, name, hp, atk, def, s
           <div className="w-1/2 h-full rounded-l-lg flex items-center justify-center">
             <div className="flex flex-col items-center justify-center gap-3">
               <img className="w-1/2" src={imageUrl} alt="" />
-              <h2 className="text-4xl font-bold">{name}</h2>
+              <h2 className="text-4xl font-bold">{name && name.charAt(0).toUpperCase() + name.slice(1)}</h2>
             </div>
           </div>
 
