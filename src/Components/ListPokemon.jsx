@@ -10,7 +10,7 @@ const ListPokemon = () => {
 
   return (
     <div className="w-full h-full flex flex-col gap-5 justify-center items-center">
-      <ul className="flex justify-center items-center gap-5 p-10 bg-bodyColor lg:w-[65%] sm:w-[85%] flex-wrap rounded-lg">
+      <ul className="flex justify-center items-center gap-5 p-10 bg-bodyColor lg:w-[76%] sm:w-[85%] flex-wrap rounded-lg">
         {pokemons.map((pokemon, index) => (
           <li key={index}>
             <Card name={pokemon.name} url={pokemon.url} />

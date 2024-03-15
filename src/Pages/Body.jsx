@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ListPokemon from '../Components/ListPokemon'
 import Pagination from '../Components/Pagination'
 import SearchBar from '../Components/SearchBar'
 import PokemonProvider from '../providers/PokemonProvider'
-import usePokemon from '../hooks/usePokemon'
 
 export default function Body() {
   return (

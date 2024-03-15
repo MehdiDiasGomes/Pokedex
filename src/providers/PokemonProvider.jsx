@@ -10,7 +10,7 @@ const PokemonProvider = ({ children, ...props }) => {
   const [currentPage, setCurrentPage] = useState(1)
 
   const totalPokemon = 470
-  const limit = 50
+  const limit = 48
   const totalPages = Math.ceil(totalPokemon / limit)
 
   const calculStartIndex = useCallback(() => {
