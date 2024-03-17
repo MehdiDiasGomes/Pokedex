@@ -24,14 +24,14 @@ export default function ModalStats({ closeModal, imageUrl, name, hp, atk, def, s
               <h2 className="text-2xl text-black font-bold">Statistiques</h2>
               <div className="flex gap-20 items-center justify-center">
                 <div className="flex flex-col gap-3">
-                  <h4>HP : {hp}</h4>
-                  <h4>ATK : {atk}</h4>
-                  <h4>ATK : {def}</h4>
+                  <h4>PV : {hp}</h4>
+                  <h4>ATQ : {atk}</h4>
+                  <h4>DEF : {def}</h4>
                 </div>
                 <div className="flex flex-col gap-3">
-                  <h4>ATK : {spAtk}</h4>
-                  <h4>ATK : {spDef}</h4>
-                  <h4>ATK : {speed}</h4>
+                  <h4>ATQ-SP : {spAtk}</h4>
+                  <h4>DEF-SP : {spDef}</h4>
+                  <h4>VIT : {speed}</h4>
                 </div>
               </div>
             </div>
